@@ -25,7 +25,7 @@ class FrontendController extends Controller
     public function category($id, Request $request)
     {
         $fashion = $request->get('fashion', null);
-
+   
         $category=Category::find($id);
         $products=$category->products;
         if ($fashion != null) {
