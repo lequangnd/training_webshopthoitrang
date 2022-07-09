@@ -67,7 +67,7 @@
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" name="keyword" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -134,7 +134,14 @@
                                    @endforeach
                                 </div>
                             </div>
-                           
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nữ</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    @foreach($categories as $categories_male)
+                                    <a href="{{route('category', ['id' =>$categories_male->id]).'?fashion=1'}}" class="dropdown-item">{{$categories_male->name}}</a>
+                                   @endforeach
+                                </div>
+                            </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">

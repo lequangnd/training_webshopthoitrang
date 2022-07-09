@@ -15,10 +15,11 @@ class FrontendController extends Controller
         View::share('categories',$categories);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-       $males=Product::where('fashion',0)->get();
-       $females=Product::where('fashion',1)->get();
+        $name=$request->input('keyword', "");
+        $males=Product::where('fashion',0)->where('name','like','%'.$name.'%')->get();
+        $females=Product::where('fashion',1)->where('name','like','%'.$name.'%')->get();
         return view('frontend.index', ['males' => $males, 'females' => $females]);
     }
 
@@ -32,5 +33,12 @@ class FrontendController extends Controller
             $products=$category->products()->where('fashion', $fashion)->get();
         }
         return view('frontend.category', ['category' => $category, 'products' => $products]);
+    }
+
+    public function details($id)
+    {
+        
+        $product=Product::find($id);
+        return view('frontend.details', ['product' => $product]);
     }
 }

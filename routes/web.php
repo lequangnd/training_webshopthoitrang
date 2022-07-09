@@ -26,3 +26,5 @@ Route::post('/admin/category/add', [CategoryController::class, 'addCategory'])->
 
 Route::get('/index', [FrontendController::class, 'index'])->name('index');
 Route::get('/category/{id}', [FrontendController::class, 'category'])->name('category');
+
+Route::get('/details/{id}', [FrontendController::class, 'details'])->name('details');
