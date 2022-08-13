@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('bill_id')->references('id')->on('bill')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
             $table->integer('number');
+            $table->string('size');
+            $table->string('color');
             $table->timestamps();
         });
     }

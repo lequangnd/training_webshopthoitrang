@@ -1,6 +1,5 @@
 @extends('admin.layouts.master')
 @section('content')
-
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive table-responsive-data2">
@@ -8,37 +7,42 @@
                 <thead>
                     <tr>
 
+                        <th>Mã hóa đơn</th>
                         <th>Tên sản phẩm</th>
-                        <th>Loại</th>
-                        <th>Ảnh</th>
-                        <th>Màu</th>
                         <th>Size</th>
+                        <th>Color</th>
                         <th>Giá</th>
-                        <th><a href="{{route('add.product')}}"><button class="btn btn-primary">Add Product</button></a>
-                        </th>
+                        <th>Số lượng</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach($billdetails->details as $bill)
                     <tr class="spacer"></tr>
                     <tr class="tr-shadow">
 
-                        <td>{{$product->name}}</td>
+                        <td>{{$bill->bill_id}}</td>
                         <td>
-                            {{$product->category->name}}
+                            {{$bill->products_details->name}}
                         </td>
-                        <td> <img style="width:100px; height:100px;" src="{{asset('images/'.$product->picture)}}"
-                                alt=""></td>
-                        <td>{{$product->color}}</td>
                         <td>
-                            {{$product->size}}
+                            {{$bill->size}}
                         </td>
-                        <td>{{$product->price}}</td>
+                        <td>
+                            {{$bill->color}}
+                        </td>
+                        <td>{{$bill->products_details->price}}</td>
+                        <td>{{$bill->number}}</td>
                         <td>
                             <div class="table-data-feature">
-                                <a href="{{route('update',['id'=>$product->id])}}">Sửa</a>
-                                <a class="ml-3" href="{{route('deleteProduct',['id'=>$product->id])}}">Xóa</a>
+                                <a href="{{route('updatedetails',['id'=>$bill->id])}}"
+                                    class="text-decoration-none">Sửa</a>
+
+                                <a class="ml-3" href="{{route('deletedetails',['id'=>$bill->id])}}"
+                                    class="text-decoration-none">Xóa</a>
+
                             </div>
+
                         </td>
                     </tr>
                     @endforeach
@@ -47,7 +51,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
